@@ -16,7 +16,7 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Arial, sans-serif;
             background-color: var(--bg);
             color: var(--text);
             margin: 0;
@@ -26,7 +26,7 @@
 
         header {
             background-color: var(--white);
-            padding: 60px 20px;
+            padding: 50px 20px;
             text-align: center;
             border-bottom: 1px solid #eee;
         }
@@ -34,17 +34,15 @@
         header h1 {
             margin: 0;
             font-weight: 300;
-            font-size: 2.2rem;
+            font-size: 2rem;
             color: #78909c;
-            letter-spacing: 1px;
         }
 
-        /* Кнопки переключения */
         .tabs {
             display: flex;
             justify-content: center;
             gap: 10px;
-            margin: -25px 0 30px 0;
+            margin: -20px 0 30px 0;
             position: sticky;
             top: 20px;
             z-index: 100;
@@ -53,10 +51,9 @@
         .tab-btn {
             background: var(--white);
             border: 1px solid #eee;
-            padding: 12px 25px;
+            padding: 10px 20px;
             border-radius: 50px;
             cursor: pointer;
-            font-size: 0.9rem;
             box-shadow: var(--shadow);
             transition: 0.3s;
         }
@@ -64,7 +61,6 @@
         .tab-btn.active {
             background-color: #cfd8dc;
             font-weight: bold;
-            border-color: #b0bec5;
         }
 
         .main-container {
@@ -88,25 +84,17 @@
             padding: 25px;
             margin-bottom: 20px;
             box-shadow: var(--shadow);
-            border-top: 6px solid transparent;
         }
 
-        #lessons .card { border-top-color: #bbdefb; }
-        #songs .card { border-top-color: #f8bbd0; }
-        #video .card { border-top-color: #c8e6c9; }
-
-        /* Стиль плеера */
-        .video-wrapper {
-            background: #000;
-            border-radius: 15px;
-            overflow: hidden;
-            margin-top: 15px;
-            line-height: 0;
-        }
+        #lessons .card { border-top: 5px solid #bbdefb; }
+        #songs .card { border-top: 5px solid #f8bbd0; }
+        #video .card { border-top: 5px solid #c8e6c9; }
 
         video {
             width: 100%;
-            display: block;
+            border-radius: 12px;
+            background: #000;
+            margin-top: 15px;
         }
 
         @keyframes fadeIn {
@@ -118,7 +106,7 @@
             text-align: center;
             padding: 20px;
             font-size: 0.8rem;
-            color: #aaa;
+            opacity: 0.5;
         }
     </style>
 </head>
@@ -131,7 +119,7 @@
 
 <nav class="tabs">
     <button class="tab-btn active" onclick="openTab(event, 'lessons')">Занятия</button>
-    <button class="tab-btn" onclick="openTab(event, 'songs')">Песни</button>
+    <button class="tab-btn" onclick="event, openTab(event, 'songs')">Песни</button>
     <button class="tab-btn" onclick="openTab(event, 'video')">Видео</button>
 </nav>
 
@@ -139,35 +127,33 @@
     
     <div id="lessons" class="content-item active">
         <div class="card">
-            <h3>Методическая полка</h3>
-            <p>Здесь будут ваши конспекты, картотеки и игры для детей.</p>
+            <h3>Методические материалы</h3>
+            <p>Здесь будут конспекты ваших музыкальных занятий.</p>
         </div>
     </div>
 
     <div id="songs" class="content-item">
         <div class="card">
             <h3>Песенный репертуар</h3>
-            <p>Тексты, ноты и ссылки на аудиофайлы.</p>
+            <p>Тексты и ноты для работы с детьми.</p>
         </div>
     </div>
 
     <div id="video" class="content-item">
         <div class="card">
-            <h3>Видеоматериалы</h3>
-            <p>Если видео не отображается, попробуйте обновить страницу (Ctrl+F5).</p>
-            
-            <div class="video-wrapper">
-                <video controls playsinline preload="metadata">
-                    <source src="v1.mp4" type="video/mp4">
-                    <source src="https://raw.githubusercontent.com/lubamuzruc-png/muzruc/main/v1.mp4" type="video/mp4">
-                    <source src="https://raw.githubusercontent.com/lubamuzruc-png/muzruc/main/v1" type="video/mp4">
-                    Ваш браузер не поддерживает встроенные видео.
-                </video>
-            </div>
-            
-            <p style="text-align: center; margin-top: 15px;">
-                <a href="https://raw.githubusercontent.com/lubamuzruc-png/muzruc/main/v1.mp4" target="_blank" style="color: #78909c; font-size: 0.8rem;">Открыть видео в новом окне</a>
-            </p>
+            <h3>Видео 1</h3>
+            <video controls playsinline preload="metadata">
+                <source src="v1.mp4" type="video/mp4">
+                <source src="https://raw.githubusercontent.com/lubamuzruc-png/muzruc/main/v1.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div class="card">
+            <h3>Видео 2</h3>
+            <video controls playsinline preload="metadata">
+                <source src="v2.mp4" type="video/mp4">
+                <source src="https://raw.githubusercontent.com/lubamuzruc-png/muzruc/main/v2.mp4" type="video/mp4">
+            </video>
         </div>
     </div>
 
@@ -179,17 +165,17 @@
 
 <script>
     function openTab(evt, tabId) {
-        // Скрываем все вкладки
-        const contents = document.querySelectorAll('.content-item');
-        contents.forEach(content => content.style.display = 'none');
-
-        // Убираем активный класс у кнопок
-        const buttons = document.querySelectorAll('.tab-btn');
-        buttons.forEach(btn => btn.classList.remove('active'));
-
-        // Показываем нужную и подсвечиваем кнопку
-        document.getElementById(tabId).style.display = 'block';
-        evt.currentTarget.classList.add('active');
+        var i, content, tablinks;
+        content = document.getElementsByClassName("content-item");
+        for (i = 0; i < content.length; i++) {
+            content[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tab-btn");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(tabId).style.display = "block";
+        evt.currentTarget.className += " active";
     }
 </script>
 
