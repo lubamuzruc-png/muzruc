@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Музыкальный кабинет</title>
+    <title>Мир Музыки</title>
     <style>
-        /* Пастельная палитра */
         :root {
             --bg: #f8f9fa;
-            --accent-pink: #fce4ec; /* Нежно-розовый */
-            --accent-blue: #e3f2fd; /* Нежно-голубой */
-            --accent-green: #f1f8e9; /* Мятный */
+            --accent-pink: #fce4ec;
+            --accent-blue: #e3f2fd;
+            --accent-green: #f1f8e9;
             --text: #4a4a4a;
             --white: #ffffff;
             --shadow: rgba(149, 157, 165, 0.1) 0px 8px 24px;
@@ -25,7 +24,6 @@
             line-height: 1.6;
         }
 
-        /* Шапка */
         header {
             background-color: var(--white);
             padding: 60px 20px;
@@ -40,12 +38,6 @@
             color: #78909c;
         }
 
-        header p {
-            font-style: italic;
-            opacity: 0.8;
-        }
-
-        /* Навигация */
         .tabs {
             display: flex;
             justify-content: center;
@@ -68,16 +60,11 @@
             color: var(--text);
         }
 
-        .tab-btn:hover {
-            transform: translateY(-2px);
-        }
-
         .tab-btn.active {
             background-color: #cfd8dc;
             font-weight: 600;
         }
 
-        /* Контент */
         .main-container {
             max-width: 900px;
             margin: 0 auto;
@@ -102,15 +89,9 @@
             border-left: 8px solid transparent;
         }
 
-        /* Цветные акценты для карточек */
         #lessons .card { border-left-color: #bbdefb; }
         #songs .card { border-left-color: #f8bbd0; }
         #video .card { border-left-color: #c8e6c9; }
-
-        .card h3 {
-            margin-top: 0;
-            color: #546e7a;
-        }
 
         video {
             width: 100%;
@@ -140,9 +121,9 @@
 </header>
 
 <div class="tabs">
-    <button class="tab-btn active" onclick="openTab('lessons')">Занятия</button>
-    <button class="tab-btn" onclick="openTab('songs')">Песни</button>
-    <button class="tab-btn" onclick="openTab('video')">Видео</button>
+    <button id="btn-lessons" class="tab-btn active" onclick="openTab('lessons')">Занятия</button>
+    <button id="btn-songs" class="tab-btn" onclick="openTab('songs')">Песни</button>
+    <button id="btn-video" class="tab-btn" onclick="openTab('video')">Видео</button>
 </div>
 
 <main class="main-container">
@@ -150,22 +131,14 @@
     <div id="lessons" class="content-item active">
         <div class="card">
             <h3>Методическая копилка</h3>
-            <p>Здесь можно разместить описание ваших авторских занятий, ссылки на скачивание планов или интерактивных игр.</p>
-        </div>
-        <div class="card">
-            <h3>Фольклорные праздники</h3>
-            <p>Сценарии мероприятий на основе народных традиций и сказок.</p>
+            <p>Конспекты занятий, дидактические игры и наработки для детей.</p>
         </div>
     </div>
 
     <div id="songs" class="content-item">
         <div class="card">
-            <h3>Репертуар на сезон</h3>
-            <p>Тексты песен, ноты и ссылки на аудиофайлы (минусовки и плюсовки).</p>
-        </div>
-        <div class="card">
-            <h3>Авторские распевки</h3>
-            <p>Упражнения для развития голоса в игровой форме.</p>
+            <h3>Репертуар</h3>
+            <p>Тексты и ноты любимых песен.</p>
         </div>
     </div>
 
@@ -173,14 +146,8 @@
         <div class="card">
             <h3>Видеовизитка / Занятие</h3>
             <video controls>
-                <source src="https://raw.githubusercontent.com/ВАШ_ЛОГИН/РЕПОЗИТОРИЙ/main/video1.mp4" type="video/mp4">
+                <source src="https://raw.githubusercontent.com/lubamuzruc-png/muzruc/main/v1" type="video/mp4">
                 Ваш браузер не поддерживает видео.
-            </video>
-        </div>
-        <div class="card">
-            <h3>Творческие выступления</h3>
-            <video controls>
-                <source src="https://raw.githubusercontent.com/ВАШ_ЛОГИН/РЕПОЗИТОРИЙ/main/video2.mp4" type="video/mp4">
             </video>
         </div>
     </div>
@@ -193,16 +160,17 @@
 
 <script>
     function openTab(tabId) {
-        // Убираем активные классы со всех вкладок и кнопок
         const contents = document.querySelectorAll('.content-item');
         const buttons = document.querySelectorAll('.tab-btn');
         
         contents.forEach(content => content.classList.remove('active'));
         buttons.forEach(btn => btn.classList.remove('active'));
 
-        // Активируем нужную вкладку и кнопку
         document.getElementById(tabId).classList.add('active');
-        event.currentTarget.classList.add('active');
+        // Добавляем активный класс нажатой кнопке
+        if(tabId === 'lessons') document.getElementById('btn-lessons').classList.add('active');
+        if(tabId === 'songs') document.getElementById('btn-songs').classList.add('active');
+        if(tabId === 'video') document.getElementById('btn-video').classList.add('active');
     }
 </script>
 
