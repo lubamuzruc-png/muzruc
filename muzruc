@@ -3,21 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Музыкальный кабинет</title>
+    <title>Музыкальный руководитель | Lisovey</title>
     <style>
-        /* Пастельная палитра */
         :root {
-            --bg: #f8f9fa;
-            --accent-pink: #fce4ec; /* Нежно-розовый */
-            --accent-blue: #e3f2fd; /* Нежно-голубой */
-            --accent-green: #f1f8e9; /* Мятный */
+            --bg: #fdfaf5;
+            --accent-pink: #fce4ec; /* Занятия */
+            --accent-blue: #e3f2fd; /* Песни */
+            --accent-green: #f1f8e9; /* Видео */
             --text: #4a4a4a;
             --white: #ffffff;
-            --shadow: rgba(149, 157, 165, 0.1) 0px 8px 24px;
+            --shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
         body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Segoe UI', Arial, sans-serif;
             background-color: var(--bg);
             color: var(--text);
             margin: 0;
@@ -25,183 +24,157 @@
             line-height: 1.6;
         }
 
-        /* Шапка */
         header {
             background-color: var(--white);
-            padding: 60px 20px;
+            padding: 50px 20px;
             text-align: center;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #f0e6d6;
         }
 
         header h1 {
             margin: 0;
             font-weight: 300;
-            font-size: 2.5rem;
             color: #78909c;
-        }
-
-        header p {
-            font-style: italic;
-            opacity: 0.8;
+            letter-spacing: 1px;
         }
 
         /* Навигация */
-        .tabs {
+        .nav-container {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin: -25px 0 40px 0;
+            gap: 10px;
+            margin: -20px 0 30px 0;
             position: sticky;
-            top: 20px;
+            top: 15px;
             z-index: 100;
         }
 
-        .tab-btn {
+        .nav-btn {
             background: var(--white);
-            border: none;
-            padding: 12px 30px;
-            border-radius: 50px;
+            border: 1px solid #eee;
+            padding: 10px 25px;
+            border-radius: 30px;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 0.95rem;
             box-shadow: var(--shadow);
             transition: all 0.3s ease;
-            color: var(--text);
         }
 
-        .tab-btn:hover {
-            transform: translateY(-2px);
-        }
-
-        .tab-btn.active {
-            background-color: #cfd8dc;
-            font-weight: 600;
+        .nav-btn.active {
+            background-color: #f0f0f0;
+            font-weight: bold;
+            border-color: #ccc;
         }
 
         /* Контент */
-        .main-container {
-            max-width: 900px;
+        .container {
+            max-width: 800px;
             margin: 0 auto;
-            padding: 0 20px 100px;
+            padding: 0 20px 50px;
         }
 
-        .content-item {
+        .section {
             display: none;
-            animation: slideUp 0.4s ease-out;
+            animation: fadeIn 0.5s ease;
         }
 
-        .content-item.active {
+        .section.active {
             display: block;
         }
 
         .card {
             background: var(--white);
-            border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 25px;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
             box-shadow: var(--shadow);
-            border-left: 8px solid transparent;
         }
 
-        /* Цветные акценты для карточек */
-        #lessons .card { border-left-color: #bbdefb; }
-        #songs .card { border-left-color: #f8bbd0; }
-        #video .card { border-left-color: #c8e6c9; }
-
-        .card h3 {
-            margin-top: 0;
-            color: #546e7a;
-        }
+        /* Цвета вкладок */
+        #lessons-sec .card { border-top: 5px solid var(--accent-pink); }
+        #songs-sec .card { border-top: 5px solid var(--accent-blue); }
+        #video-sec .card { border-top: 5px solid var(--accent-green); }
 
         video {
             width: 100%;
-            border-radius: 12px;
-            margin-top: 15px;
+            border-radius: 10px;
+            margin-top: 10px;
             background: #000;
         }
 
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(20px); }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         footer {
             text-align: center;
-            padding: 40px;
-            font-size: 0.9rem;
-            color: #999;
+            padding: 30px;
+            font-size: 0.8rem;
+            opacity: 0.6;
         }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>Мир Музыки</h1>
-    <p>Творческая площадка музыкального руководителя</p>
+    <h1>Музыкальный кабинет</h1>
+    <p>Творческие материалы и вдохновение</p>
 </header>
 
-<div class="tabs">
-    <button class="tab-btn active" onclick="openTab('lessons')">Занятия</button>
-    <button class="tab-btn" onclick="openTab('songs')">Песни</button>
-    <button class="tab-btn" onclick="openTab('video')">Видео</button>
+<div class="nav-container">
+    <button class="nav-btn active" onclick="showTab('lessons-sec')">Занятия</button>
+    <button class="nav-btn" onclick="showTab('songs-sec')">Песни</button>
+    <button class="nav-btn" onclick="showTab('video-sec')">Видео</button>
 </div>
 
-<main class="main-container">
+<main class="container">
     
-    <div id="lessons" class="content-item active">
+    <section id="lessons-sec" class="section active">
         <div class="card">
-            <h3>Методическая копилка</h3>
-            <p>Здесь можно разместить описание ваших авторских занятий, ссылки на скачивание планов или интерактивных игр.</p>
+            <h3>Методические разработки</h3>
+            <p>Конспекты занятий, дидактические игры и картотеки для детей дошкольного возраста.</p>
         </div>
         <div class="card">
-            <h3>Фольклорные праздники</h3>
-            <p>Сценарии мероприятий на основе народных традиций и сказок.</p>
+            <h3>Мир фольклора</h3>
+            <p>Материалы по русским народным традициям и сказкам.</p>
         </div>
-    </div>
+    </section>
 
-    <div id="songs" class="content-item">
+    <section id="songs-sec" class="section">
         <div class="card">
-            <h3>Репертуар на сезон</h3>
-            <p>Тексты песен, ноты и ссылки на аудиофайлы (минусовки и плюсовки).</p>
+            <h3>Музыкальный репертуар</h3>
+            <p>Здесь будут собраны тексты песен и ноты для музыкальных занятий.</p>
         </div>
-        <div class="card">
-            <h3>Авторские распевки</h3>
-            <p>Упражнения для развития голоса в игровой форме.</p>
-        </div>
-    </div>
+    </section>
 
-    <div id="video" class="content-item">
+    <section id="video-sec" class="section">
         <div class="card">
-            <h3>Видеовизитка / Занятие</h3>
+            <h3>Видеоматериалы</h3>
+            <p>Ниже представлено видео <strong>v1</strong> из нашего архива:</p>
+            
             <video controls>
-                <source src="https://raw.githubusercontent.com/ВАШ_ЛОГИН/РЕПОЗИТОРИЙ/main/video1.mp4" type="video/mp4">
-                Ваш браузер не поддерживает видео.
+                <source src="https://raw.githubusercontent.com/lubamuzruc-png/muzruc/main/v1" type="video/mp4">
+                Ваш браузер не поддерживает встроенные видео.
             </video>
         </div>
-        <div class="card">
-            <h3>Творческие выступления</h3>
-            <video controls>
-                <source src="https://raw.githubusercontent.com/ВАШ_ЛОГИН/РЕПОЗИТОРИЙ/main/video2.mp4" type="video/mp4">
-            </video>
-        </div>
-    </div>
+    </section>
 
 </main>
 
 <footer>
-    &copy; 2026 Сайт музыкального руководителя
+    &copy; 2026 Проект «Lisovey» | Музыкальный руководитель
 </footer>
 
 <script>
-    function openTab(tabId) {
-        // Убираем активные классы со всех вкладок и кнопок
-        const contents = document.querySelectorAll('.content-item');
-        const buttons = document.querySelectorAll('.tab-btn');
+    function showTab(id) {
+        // Прячем все секции
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        // Снимаем активность с кнопок
+        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
         
-        contents.forEach(content => content.classList.remove('active'));
-        buttons.forEach(btn => btn.classList.remove('active'));
-
-        // Активируем нужную вкладку и кнопку
-        document.getElementById(tabId).classList.add('active');
+        // Показываем нужную
+        document.getElementById(id).classList.add('active');
         event.currentTarget.classList.add('active');
     }
 </script>
